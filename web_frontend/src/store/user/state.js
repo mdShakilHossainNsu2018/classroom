@@ -1,0 +1,15 @@
+export default{
+    isAuthenticated: false,
+    token: '',
+    userEmail: '',
+    username: '',
+    user_id: '',
+    isStaff: false,
+    courses: {},
+    user: [],
+    course: {},
+    usersByCourse: [],
+    isLoading: false,
+    snackBarShow: false,
+    errorRes: null,
+}
