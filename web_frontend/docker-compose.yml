@@ -1,7 +1,9 @@
 version: '3'
 services:
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     stdin_open: true
     tty: true
     ports:
@@ -14,18 +16,24 @@ services:
       - CHOKIDAR_USEPOLLING=true
 
   express:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     stdin_open: true
     tty: true
-    command: node server.js
+    command: "node server.js"
     ports:
       - "3000:3000"
     volumes:
       - "/app/node_modules"
       - ".:/app"
+    depends_on:
+      - web
 
   peerjs:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     stdin_open: true
     tty: true
     command: >
@@ -33,7 +41,7 @@ services:
 
     ports:
       - "3001:3001"
-    volumes:
-      - "/app/node_modules"
-      - ".:/app"
+    depends_on:
+      - express
+      - web
 

@@ -1,11 +1,13 @@
-#FROM node:lts-alpine
-FROM node:12
-COPY package.json ./
-
-RUN mkdir /app
-COPY . /app
+# build stage
+FROM node:lts-alpine as build-stage
 WORKDIR /app
-RUN  npm install
-EXPOSE 8080
-#RUN npm install -g @vue/cli
-CMD ["npm", "run", "serve"]
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+# production stage
+FROM nginx:stable-alpine as production-stage
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

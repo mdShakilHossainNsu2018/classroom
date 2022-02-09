@@ -36,6 +36,8 @@ services:
     depends_on:
       - redis
       - rabbit
+      - db
+
   celery-beat:
     build: .
     command: celery -A class_room_backend beat -l INFO
@@ -50,6 +52,8 @@ services:
       - redis
       - rabbit
       - celery
+      - db
+
 
   rabbit:
     image: rabbitmq:latest
@@ -64,7 +68,7 @@ services:
   #      - celery
 
   db:
-    image: postgres
+    image: postgres:latest
     container_name: db
     environment:
       - POSTGRES_DB=postgres

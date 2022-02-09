@@ -4,15 +4,19 @@ ENV PYTHONUNBUFFERED=1
 
 #ENV PATH="/scripts:${PATH}"
 
-COPY ./requirements.txt ./requirements.txt
+RUN mkdir /class_room_backend
+WORKDIR /class_room_backend
+
+COPY ./requirements.txt .
+RUN pip install -r requirements.txt
 #RUN apk update && apk add libc-dev make git libffi-dev openssl-dev python3-dev libxml2-dev libxslt-dev
 #RUN apk add --update --no-cache --virtual .tmp gcc libc-dev linux-headers
 
 #RUN apk del .tmp
-RUN mkdir /class_room_backend
+
 COPY . /class_room_backend
-WORKDIR /class_room_backend
-RUN pip install -r /requirements.txt
+
+
 #COPY ./scripts /scripts
 #RUN pip install -U spacy
 #RUN python -m spacy download en_core_web_sm
