@@ -3,8 +3,7 @@ var httpServer = require('http').Server(app)
 
 const io = require("socket.io")(httpServer, {
     cors: {
-        origin: ["http://localhost:8080", 'http://192.168.0.102:8080'
-],
+        origin: "*",
         methods: ["GET", "POST"]
     }
 
