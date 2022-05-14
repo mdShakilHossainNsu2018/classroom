@@ -2,7 +2,7 @@ import axios from 'axios'
 // import state from "./state";
 
 export var axiosLocal = axios.create({
-    baseURL: 'http://127.0.0.1:8000/api/'
+    baseURL: 'http://204.152.197.187:8000/api/'
 })
 
 export const init = ({commit}) => {
