@@ -1,55 +1,59 @@
 <template>
     <v-container>
-        <v-card class="py-9 px-9">
-            <v-form
-                    ref="form"
-                    v-model="valid"
-                    lazy-validation
+      <div class="d-flex">
+        <v-card class="py-9 px-9" width="600">
+          <v-form
+              ref="form"
+              v-model="valid"
+              lazy-validation
+          >
+            <v-text-field
+                v-model="userName"
+                :counter="10"
+                :rules="nameRules"
+                label="ID"
+                required
+            ></v-text-field>
+
+            <v-text-field
+                v-model="password"
+                :rules="passwordRules"
+                label="password"
+                type="password"
+                required
+            ></v-text-field>
+
+
+            <v-btn
+                color="warning"
+                to="/register"
             >
-                <v-text-field
-                        v-model="userName"
-                        :counter="10"
-                        :rules="nameRules"
-                        label="ID"
-                        required
-                ></v-text-field>
+              Registration
+            </v-btn>
 
-                <v-text-field
-                        v-model="password"
-                        :rules="passwordRules"
-                        label="password"
-                        type="password"
-                        required
-                ></v-text-field>
+            <v-btn
+                color="primary"
+                class="ml-4"
+                @click="login"
+            >
+              Login
+            </v-btn>
 
+            <v-progress-circular
 
-                <v-btn
-                        color="warning"
-                        to="/register"
-                >
-                    Registration
-                </v-btn>
+                v-if="getLoadingState"
+                class="ml-16"
+                :size="70"
+                :width="7"
+                color="purple"
+                indeterminate
+            ></v-progress-circular>
 
-                <v-btn
-                        color="primary"
-                        class="ml-4"
-                        @click="login"
-                >
-                    Login
-                </v-btn>
-
-                <v-progress-circular
-
-                        v-if="getLoadingState"
-                        class="ml-16"
-                        :size="70"
-                        :width="7"
-                        color="purple"
-                        indeterminate
-                ></v-progress-circular>
-
-            </v-form>
+          </v-form>
         </v-card>
+        
+        <img src="https://cdn.dribbble.com/users/1517677/screenshots/4938618/ng_3-1.jpg" alt="">
+      </div>
 
         <v-snackbar
                 v-if="getSnackBarShow"

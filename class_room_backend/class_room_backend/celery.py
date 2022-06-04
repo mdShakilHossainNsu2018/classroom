@@ -31,7 +31,7 @@ app.conf.beat_schedule = {
     #     # 'args': (16, 16),
     # },
     # 'corpusTrainer': {
-    #
+    
     #     'task': 'chat.tasks.corpusTrainer',
     #     # Executes every Monday morning at 7:30 a.m.
     #     #         'schedule': crontab(minute=0, hour=0),

@@ -19,10 +19,11 @@ import WebRTC from 'vue-webrtc'
 Vue.use(WebRTC)
 
 Vue.use(VuePeerJS, new Peer({
-  host: '204.152.197.187',
-  port: '3001'}));
+  host: '3677-45-248-151-134.in.ngrok.io',
+  secure: true,
+  }));
 
-const socket = io('http://204.152.197.187:3000');
+const socket = io('https://fcf9-45-248-151-134.in.ngrok.io');
 
 Vue.use(VueSocketIOExt, socket);
 

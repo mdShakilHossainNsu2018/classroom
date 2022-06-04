@@ -2,7 +2,8 @@ import axios from 'axios'
 // import state from "./state";
 
 export var axiosLocal = axios.create({
-    baseURL: 'http://204.152.197.187:8000/api/'
+
+    baseURL: 'https://5dbb-45-248-151-134.in.ngrok.io/api/'
 })
 
 export const init = ({commit}) => {
@@ -30,9 +31,7 @@ export const  login = ({commit}, data) =>  {
             commit("ERROR_SET", err.response)
         // }
     }).finally(() => {
-
         commit('SET_LOADING_STATE', false)
-
     })
 
 }
