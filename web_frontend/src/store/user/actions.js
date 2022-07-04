@@ -1,9 +1,10 @@
+import 'dotenv/config'
 import axios from 'axios'
 // import state from "./state";
 
 export var axiosLocal = axios.create({
 
-    baseURL: 'https://5dbb-45-248-151-134.in.ngrok.io/api/'
+    baseURL: process.env.VUE_APP_BACKEND_URL
 })
 
 export const init = ({commit}) => {
@@ -36,9 +37,17 @@ export const  login = ({commit}, data) =>  {
 
 }
 
+export const getAllCourses = ({commit}) => {
+    console.log(commit)
+    axiosLocal.get('courses/courses/').then((res) => {
+        commit('SET_COURSES', res.data);
+    }).catch((error) => {
+        console.log(error)
+    })
+}
+
 export const getCourses = ({commit}, token) => {
 
-    console.log('state', token)
 
     axiosLocal.get('courses/user_course/', {
         headers: {
@@ -48,7 +57,7 @@ export const getCourses = ({commit}, token) => {
     }).then(res => {
 
         commit('SET_COURSES', res.data)
-        console.log('res', res)
+        // console.log('res', res)
 
         // localStorage.setItem('user', JSON.stringify(res.data))
         // commit('SET_USER', res.data)

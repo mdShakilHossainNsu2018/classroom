@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM node:14
 
 
 # install simple http server for serving static content
@@ -17,5 +17,7 @@ RUN npm install
 
 COPY . .
 EXPOSE 8080
+
+RUN export NODE_OPTIONS=--openssl-legacy-provider
 
 CMD ["npm", "run", "serve"]

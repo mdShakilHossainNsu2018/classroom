@@ -22,7 +22,7 @@ services:
       - BACKEND_URL=http://204.152.197.187:8000/api/
 
   webserver:
-    image: nginx:mainline-alpine
+    image: nginx:1.23.0
     container_name: webserver
     restart: unless-stopped
     ports:

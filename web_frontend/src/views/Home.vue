@@ -1,5 +1,5 @@
 <template>
-    <div class="home">
+    <div id="home">
 
         <h1 class="pa-16 mx-auto" v-if="getCoursesData.length === 0">Sorry, You don't have any course registered!!!</h1>
 
@@ -8,7 +8,7 @@
 
             <v-card
                     class="mx-auto my-5"
-                    max-width="500"
+                    min-width="500"
                     outlined
                     hover
                     v-for="item in getCoursesData"
@@ -17,38 +17,77 @@
 
 
             >
-                <v-list-item three-line>
-                    <v-list-item-content>
-                        <div class="overline mb-4">
-                            Class Days: {{item.class_days}}
-                        </div>
-                        <v-list-item-title class="headline mb-1">
-                          Course Code: {{item.course_code}}
-                          <br>
-                          Section: {{item.course_section}}
-                        </v-list-item-title>
-                        <v-list-item-subtitle><b>Start: </b> {{item.start_time}} <br> <b>End: </b> {{item.end_time}}
-                        </v-list-item-subtitle>
-                    </v-list-item-content>
+              <template slot="progress">
+                <v-progress-linear
+                    color="deep-purple"
+                    height="10"
+                    indeterminate
+                ></v-progress-linear>
+              </template>
 
-                    <v-list-item-avatar
-                            tile
-                            size="90"
+              <v-img
+                  height="250"
+                  :src="item.cover_image"
+              ></v-img>
+              <v-card-title>{{item.course_name}}</v-card-title>
 
-                    >
-                        <v-img eager  :src="require('../assets/nsu_logo.png')"></v-img>
-                    </v-list-item-avatar>
-                </v-list-item>
+              <v-card-text>
+                <v-row
+                    align="center"
+                    class="mx-0"
+                >
+<!--                  <v-rating-->
+<!--                      :value="4.5"-->
+<!--                      color="amber"-->
+<!--                      dense-->
+<!--                      half-increments-->
+<!--                      readonly-->
+<!--                      size="14"-->
+<!--                  ></v-rating>-->
 
-                <!--      <v-card-actions>-->
-                <!--        <v-btn-->
-                <!--                outlined-->
-                <!--                rounded-->
-                <!--                text-->
-                <!--        >-->
-                <!--          Button-->
-                <!--        </v-btn>-->
-                <!--      </v-card-actions>-->
+<!--                  <div class="grey&#45;&#45;text ms-4">-->
+<!--                    4.5 (413)-->
+<!--                  </div>-->
+                </v-row>
+
+                <div class="mt-2 text-subtitle-1">
+                  <b>price:</b> {{item.price}} Wie
+                </div>
+
+                <div>
+                  <b>Course Code:</b> {{item.course_code}}
+                  <br>
+                  <b>Section:</b> {{item.course_section}}
+                  <br>
+                  <b>Start: </b> {{item.start_time}} <br> <b>End: </b> {{item.end_time}}
+
+                </div>
+              </v-card-text>
+
+
+
+              <v-divider class="mx-2"></v-divider>
+
+              <v-card-title class="ma-0 py-0" >Class Days</v-card-title>
+
+              <v-card-text>
+                <v-chip-group
+
+                    column
+                >
+                  <v-chip color="secondary" v-for="day in getClassDay(item.class_days)" v-bind:key="day">{{day}}</v-chip>
+                </v-chip-group>
+              </v-card-text>
+
+              <v-card-actions>
+                <v-btn
+                    color="primary lighten-2"
+
+                    @click="enroll"
+                >
+                  Enroll To Course
+                </v-btn>
+              </v-card-actions>
 
             </v-card>
         </div>
@@ -93,13 +132,43 @@
 
 
         methods: {
-            ...mapActions("user", ['getCourses']),
+            ...mapActions("user", ['getCourses', "getAllCourses"]),
             // ...mapActions("component", ['toggleChatBot']),
 
             onClickChatBtn(){
                 this.isOpen = !this.isOpen;
                 // this.toggleChatBot(!this.isOpen)
             },
+
+          getClassDay(days) {
+            let dayList = []
+            console.log(days);
+
+
+              [...days.toLowerCase()].forEach(item => {
+                if (item === 's'){
+                  dayList.push("Sunday")
+                }else if (item === "m") {
+                  dayList.push("Monday")
+                } else if (item === "w") {
+                  dayList.push("Wednesday")
+                } else if (item === "t") {
+                  dayList.push("Tuesday")
+                }else if (item === "r") {
+                  dayList.push("Thursday")
+                } else if (item === "a") {
+                  dayList.push("Saturday")
+                } else if (item === "f") {
+                  dayList.push("Friday")
+                }
+              });
+
+              return dayList;
+          },
+
+          enroll(){
+
+          },
 
             goToCourseDetail(code, id) {
                 this.$router.push({name: 'ClassDetail', params: {class_name: code, id: id}})
@@ -112,7 +181,7 @@
         },
 
         mounted() {
-            this.getCourses(this.getToken)
+            this.getAllCourses();
             // console.log(this.getToken)
 
 
@@ -126,6 +195,13 @@
         bottom: 0;
         position: absolute;
         margin: 0 0 16px 16px;
+    }
+
+    #home {
+      background-image: url("../assets/background_img.jpeg");
+      background-repeat: no-repeat;
+      height: 100vh;
+      background-size: cover;
     }
 </style>
 

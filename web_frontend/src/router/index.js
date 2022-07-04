@@ -4,7 +4,7 @@ import Home from '../views/Home.vue'
 import Attendance from '../components/Attendance.vue'
 import ClassDetail from '../views/ClassDetail.vue'
 
-import Notification from '../components/Notification.vue'
+// import Notification from '../components/Notification.vue'
 import store from "@/store";
 import Login from "../views/Login";
 import Register from "../views/Register";
@@ -27,7 +27,7 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    beforeEnter: checkAuth
+    // beforeEnter: checkAuth
   },
 
   {

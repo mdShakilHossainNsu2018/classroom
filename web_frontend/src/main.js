@@ -5,7 +5,6 @@ import store from './store'
 import vuetify from './plugins/vuetify';
 import router from './router'
 import Vuetify from 'vuetify';
-//index.js or main.js
 import 'vuetify/dist/vuetify.min.css' //Ensure you are using A Css Loader
 
 import VueSocketIOExt from 'vue-socket.io-extended';
@@ -19,11 +18,11 @@ import WebRTC from 'vue-webrtc'
 Vue.use(WebRTC)
 
 Vue.use(VuePeerJS, new Peer({
-  host: '3677-45-248-151-134.in.ngrok.io',
+  host: process.env.VUE_APP_HOST + ":3001",
   secure: true,
   }));
 
-const socket = io('https://fcf9-45-248-151-134.in.ngrok.io');
+const socket = io(process.env.VUE_APP_HOST + ":3000");
 
 Vue.use(VueSocketIOExt, socket);
 

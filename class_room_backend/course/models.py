@@ -18,7 +18,10 @@ class Course(models.Model):
     start_time = models.TimeField(blank=False, null=False)
     end_time = models.TimeField(blank=False, null=False)
     class_days = models.CharField(choices=Days, blank=False, null=False, max_length=50)
+    cover_image = models.ImageField(upload_to="images/")
+    price = models.IntegerField(default=200, blank=False, null=False)
     users = models.ManyToManyField(User)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

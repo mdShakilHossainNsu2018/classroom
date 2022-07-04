@@ -16,4 +16,4 @@ class CourseSerializer(serializers.HyperlinkedModelSerializer):
     # 0: "http://127.0.0.1:8000/api/users/users/6/"
     class Meta:
         model = Course
-        fields = ['id', 'url', 'course_name', 'course_section', 'course_code', 'class_days', 'start_time', 'end_time', 'created_at', 'updated_at', 'users' ]
+        fields = '__all__'
