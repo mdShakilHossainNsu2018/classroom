@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'drf_yasg',
 
     'rest_framework',
     'rest_framework.authtoken',
@@ -52,6 +53,7 @@ INSTALLED_APPS = [
     'channels_redis',
     'django_celery_results',
     'chatterbot.ext.django_chatterbot',
+    # 'rest_framework_swagger',
 
     'users',
     'course',
@@ -65,6 +67,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',  # <-- And here
     ],
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
 
 ASGI_APPLICATION = "class_room_backend.asgi.application"
@@ -88,6 +91,7 @@ ROOT_URLCONF = 'class_room_backend.urls'
 
 TEMPLATES = [
     {
+         
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR / 'templates']
         ,

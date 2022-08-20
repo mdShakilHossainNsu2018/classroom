@@ -14,6 +14,9 @@ import Peer from 'peerjs';
 
 import WebRTC from 'vue-webrtc'
 
+import drizzleVuePlugin from "@drizzle/vue-plugin";
+import drizzleOptions from "./drizzleOptions";
+
 
 Vue.use(WebRTC)
 
@@ -25,6 +28,7 @@ Vue.use(VuePeerJS, new Peer({
 const socket = io(process.env.VUE_APP_HOST + ":3000");
 
 Vue.use(VueSocketIOExt, socket);
+Vue.use(drizzleVuePlugin, { store, drizzleOptions });
 
 
 Vue.use(Vuetify)

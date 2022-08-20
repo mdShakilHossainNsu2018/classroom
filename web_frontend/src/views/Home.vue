@@ -8,7 +8,8 @@
 
             <v-card
                     class="mx-auto my-5"
-                    min-width="500"
+                    width="25rem"
+                    height="30rem"
                     outlined
                     hover
                     v-for="item in getCoursesData"
@@ -26,7 +27,8 @@
               </template>
 
               <v-img
-                  height="250"
+
+                  height="10rem"
                   :src="item.cover_image"
               ></v-img>
               <v-card-title>{{item.course_name}}</v-card-title>
@@ -68,20 +70,20 @@
 
               <v-divider class="mx-2"></v-divider>
 
-              <v-card-title class="ma-0 py-0" >Class Days</v-card-title>
+              <v-card-title class="my-0 py-0" >Class Days</v-card-title>
 
-              <v-card-text>
+              <v-card-text class="py-1 px-3">
                 <v-chip-group
 
                     column
                 >
-                  <v-chip color="secondary" v-for="day in getClassDay(item.class_days)" v-bind:key="day">{{day}}</v-chip>
+                  <v-chip color="accent" v-for="day in getClassDay(item.class_days)" v-bind:key="day">{{day}}</v-chip>
                 </v-chip-group>
               </v-card-text>
 
-              <v-card-actions>
+              <v-card-actions class="py-0">
                 <v-btn
-                    color="primary lighten-2"
+                    color="primary"
 
                     @click="enroll"
                 >
@@ -197,11 +199,6 @@
         margin: 0 0 16px 16px;
     }
 
-    #home {
-      background-image: url("../assets/background_img.jpeg");
-      background-repeat: no-repeat;
-      height: 100vh;
-      background-size: cover;
-    }
+
 </style>
 

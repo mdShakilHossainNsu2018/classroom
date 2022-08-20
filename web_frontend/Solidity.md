@@ -1,0 +1,6 @@
+```
+truffle develop
+
+
+migrate --reset
+```

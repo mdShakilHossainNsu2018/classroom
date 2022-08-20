@@ -1,6 +1,6 @@
 import 'package:classroom_flutter/models/courses_by_user_model.dart';
 import 'package:classroom_flutter/providers/courses.dart';
-import 'package:classroom_flutter/screens/call_screen.dart';
+// import 'package:classroom_flutter/screens/call_screen.dart';
 import 'package:classroom_flutter/screens/create_post_screen.dart';
 import 'package:classroom_flutter/widgets/app_drawer.dart';
 import 'package:classroom_flutter/widgets/attendance.dart';
@@ -23,10 +23,10 @@ class _CourseScreenState extends State<CourseScreen> {
 
   CourseInfoModel? _currentCourse;
 
-  List<Widget> _widgets = [
-    CourseStream(),
-    Attendance(),
-    Peoples(),
+  final List<Widget>  _widgets =  [
+    const CourseStream(),
+    const Attendance(),
+    const Peoples(),
   ];
 
   int _selectedIndex = 0;
@@ -54,9 +54,9 @@ class _CourseScreenState extends State<CourseScreen> {
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.pushNamed(context, CallScreen.routeName);
+              // Navigator.pushNamed(context, CallScreen.routeName);
             },
-            child: Icon(
+            child: const Icon(
               Icons.video_call_outlined,
               size: 40,
   
@@ -86,7 +86,7 @@ class _CourseScreenState extends State<CourseScreen> {
             }
           });
         },
-        child: Icon(
+        child: const Icon(
           Icons.add,
           size: 40,
         ),
@@ -94,7 +94,7 @@ class _CourseScreenState extends State<CourseScreen> {
       body: _widgets[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         key: UniqueKey(),
-        items: <BottomNavigationBarItem>[
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.view_stream_rounded),
             label: 'Stream',

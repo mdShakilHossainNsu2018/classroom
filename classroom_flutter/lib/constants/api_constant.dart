@@ -2,7 +2,8 @@ import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart';
 
 // const String IP = "192.168.0.104";
-const String IP = "192.168.0.108";
+// const String IP = "192.168.0.108";
+const String IP = "10.0.2.2";
 
 String getIP() {
   // if ((defaultTargetPlatform == TargetPlatform.iOS) ||

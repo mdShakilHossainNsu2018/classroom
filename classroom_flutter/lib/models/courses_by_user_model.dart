@@ -2,6 +2,7 @@ class CourseInfoModel {
   int? id;
   String? url;
   String? courseName;
+  String? coverImage;
   int? courseSection;
   String? courseCode;
   String? classDays;
@@ -15,6 +16,7 @@ class CourseInfoModel {
       {this.id,
       this.url,
       this.courseName,
+        this.coverImage,
       this.courseSection,
       this.courseCode,
       this.classDays,
@@ -28,6 +30,7 @@ class CourseInfoModel {
     id = json['id'];
     url = json['url'];
     courseName = json['course_name'];
+    coverImage = json['cover_image'];
     courseSection = json['course_section'];
     courseCode = json['course_code'];
     classDays = json['class_days'];
@@ -39,18 +42,19 @@ class CourseInfoModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['url'] = this.url;
-    data['course_name'] = this.courseName;
-    data['course_section'] = this.courseSection;
-    data['course_code'] = this.courseCode;
-    data['class_days'] = this.classDays;
-    data['start_time'] = this.startTime;
-    data['end_time'] = this.endTime;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
-    data['users'] = this.users;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['url'] = url;
+    data['course_name'] = courseName;
+    data['cover_image'] = coverImage;
+    data['course_section'] = courseSection;
+    data['course_code'] = courseCode;
+    data['class_days'] = classDays;
+    data['start_time'] = startTime;
+    data['end_time'] = endTime;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    data['users'] = users;
     return data;
   }
 }
